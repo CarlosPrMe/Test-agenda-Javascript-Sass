@@ -1,0 +1,383 @@
+/*------------------------------
+GLOBAL
+-----------------------------*/
+@import url("https://fonts.googleapis.com/css?family=Encode+Sans:300,400,700&display=swap");
+/*------------------------------
+COLORES RANDOM
+-----------------------------*/
+/*------------------------------
+TRANSICION
+-----------------------------*/
+/*------------------------------
+BOTONES
+-----------------------------*/
+.btn {
+  display: inline-block;
+  outline: none;
+  padding: 0.625rem 0.75rem;
+  border: 0;
+  font-size: 1rem;
+  font-family: 'Encode Sans', sans-serif;
+  border-radius: 0.25rem;
+  background-color: #eeeeee;
+  color: #4a4a4a;
+  cursor: pointer;
+  transition: all 250ms linear;
+}
+
+.btn:hover {
+  background-color: #e1e1e1;
+}
+
+.btn--primary {
+  padding: 0.625rem 1.5625rem;
+  background-color: #0cb7f5;
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background-color: #09a6de;
+}
+
+.btn--success {
+  padding: 0.625rem 1.5625rem;
+  background-color: #0bd4a4;
+  color: #fff;
+}
+
+.btn--more {
+  position: absolute;
+  right: 1.875rem;
+  bottom: 1.875rem;
+}
+
+.btn--more:hover {
+  background-color: #0abc91;
+}
+
+.btn--delete {
+  position: relative;
+  z-index: 50;
+  padding: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 100%;
+  display: none;
+  cursor: pointer;
+}
+
+.btn--delete::before {
+  content: 'x';
+  position: absolute;
+  bottom: 0.125rem;
+  left: 0.375rem;
+  color: rgba(74, 74, 74, 0.45);
+}
+
+#update_user,
+#add_user {
+  display: none;
+}
+
+.rotate {
+  transform: rotate(45deg);
+}
+
+*, *::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1.2;
+  font-size: 16px;
+  font-family: 'Encode Sans', sans-serif;
+  color: #4a4a4a;
+  overflow: hidden;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 15.625rem 16.125rem 1fr;
+}
+
+.form__group {
+  margin-bottom: 0.9375rem;
+  padding: 0 0.9375rem;
+}
+
+.destacado {
+  margin-bottom: 0;
+  padding: 1.5625rem 0;
+  background-color: #f8f8f8;
+  border-top: solid 0.0625rem #dadada;
+  border-left: solid 0.0625rem #dadada;
+}
+
+.destacado:nth-child(5) {
+  background-color: #fff;
+  border-bottom: solid 0.0625rem #dadada;
+}
+
+.form__label,
+.form__control,
+.form__select-lg {
+  display: block;
+}
+
+.form__label {
+  padding: 0.1875rem 0;
+}
+
+.form__control {
+  padding: 0 0.6875rem;
+  height: 2.375rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  border: solid 0.0625rem #dadada;
+}
+
+.form__control--sm {
+  display: inline-block;
+  width: auto;
+}
+
+.form__select {
+  display: inline-block;
+  border-radius: 4px;
+  border: solid 1px #dadada;
+  width: 6.5rem;
+  height: 2.375rem;
+}
+
+.form__select--lg {
+  display: block;
+  width: 100%;
+  margin-top: 0.1875rem;
+}
+
+/*------------------------------
+GLOBAL
+-----------------------------*/
+main {
+  position: relative;
+}
+
+/*------------------------------
+MENU CONTACTOS
+-----------------------------*/
+.navbar {
+  padding: 1.4375rem 0;
+  background-color: #5d6e6a;
+  height: 100vh;
+}
+
+.navbar__item {
+  padding: 0.9375rem 1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 250ms linear;
+}
+
+.navbar__item:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #4a4a4a;
+}
+
+/*Clase para seleccion de grupo
+------------------------*/
+.selected {
+  background-color: #fff;
+  color: #4a4a4a;
+}
+
+/*------------------------------
+BUSCADOR
+-----------------------------*/
+.search {
+  padding: 1.4375rem 0;
+  height: 100vh;
+  border-right: solid 0.0625rem #dadada;
+}
+
+.search .form__group {
+  border: 0;
+}
+
+.search .form__control {
+  padding: 0 1.0625rem;
+  color: #aaaaaa;
+}
+
+.search .form__control::placeholder {
+  color: #aaaaaa;
+}
+
+.search__input {
+  padding: 0 1.0625rem;
+  width: 100%;
+  height: 2.3125rem;
+  border-radius: 1.15625rem;
+  border: solid 0.0625rem #dadada;
+}
+
+.user__list {
+  overflow-y: scroll;
+}
+
+.user-list__item {
+  padding: 0.375rem 1.125rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 250ms linear;
+}
+
+.user-list__item:hover {
+  font-weight: 700;
+  color: #333333;
+}
+
+.user-list__item:hover > .btn--delete {
+  display: block;
+}
+
+/*------------------------------
+MENU CONTACTOS
+-----------------------------*/
+.contact__media {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  width: 4.25rem;
+  height: 4.25rem;
+  text-transform: uppercase;
+  font-size: 2.75rem;
+  color: #fff;
+  background-color: #ccc;
+  background-color: #c9d002;
+  margin-right: 1.625rem;
+}
+
+.contact__heading {
+  display: inline-block;
+  padding: 0.25rem 0;
+  font-size: 2.0625rem;
+}
+
+.contact__heading--detail {
+  display: block;
+  font-size: 0.875rem;
+  color: #999999;
+}
+
+.contact__block {
+  padding: 0.9375rem 3rem;
+  border-bottom: solid 0.0625rem #dadada;
+}
+
+.contact__block:first-of-type {
+  display: flex;
+  align-items: flex-start;
+  padding: 1.5625rem 3rem;
+}
+
+.contact__block:last-of-type {
+  border-bottom: 0;
+}
+
+.contact__detail {
+  display: block;
+  padding: 0.9375rem 2.1875rem;
+}
+
+/*------------------------------
+BARRA DESPLAZABLE-MENU
+-----------------------------*/
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  background-color: #fff;
+  padding: 1.75rem 0;
+  width: 20.9375rem;
+  height: 100vh;
+  border-left: solid 0.0625rem #dadada;
+  opacity: 0;
+  transform: translateX(110%);
+  transition: all 250ms linear;
+}
+
+.menu__heading {
+  margin-bottom: 0.9375rem;
+  padding: 0 0.9375rem;
+  font-weight: 700;
+}
+
+.menu__btns {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 0.9375rem;
+}
+
+/*--------------------------
+Transicion del menu
+-----------------------------*/
+.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.icon {
+  fill: #dadada;
+  transform: translateY(35px);
+}
+/*# sourceMappingURL=style.css.map */

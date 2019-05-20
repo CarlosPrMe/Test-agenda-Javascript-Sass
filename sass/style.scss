@@ -1,0 +1,210 @@
+/*------------------------------
+GLOBAL
+-----------------------------*/
+
+@import "./px-to-rem";
+@import url("https://fonts.googleapis.com/css?family=Encode+Sans:300,400,700&display=swap");
+@import "./variables";
+@import "./reset";
+@import "./grid";
+@import "./form";
+
+/*------------------------------
+GLOBAL
+-----------------------------*/
+
+
+main{
+    position: relative;
+
+}
+
+/*------------------------------
+MENU CONTACTOS
+-----------------------------*/
+
+.navbar {
+  padding: rem(23px 0);
+  background-color: #5d6e6a;
+  height: 100vh;
+
+  &__item {
+    padding: rem(15px 16px);
+    color: #fff;
+    cursor: pointer;
+    @include transition();
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #4a4a4a;
+    }
+  }
+}
+
+/*Clase para seleccion de grupo
+------------------------*/
+
+.selected{
+  background-color: #fff;
+  color: #4a4a4a;
+}
+
+
+/*------------------------------
+BUSCADOR
+-----------------------------*/
+
+
+.search {
+  padding: rem(23px) 0;
+  height: 100vh;
+  border-right: rem(solid 1px #dadada);
+
+  .form__group{
+    border: 0;
+  }
+
+  .form__control{
+      padding: rem(0 17px);
+      color: #aaaaaa;
+      
+      &::placeholder{
+        color: #aaaaaa;
+      }
+  }
+
+
+  &__input {
+    padding: 0 rem(17px);
+    width: 100%;
+    height: rem(37px);
+    border-radius: rem(18.5px);
+    border: rem(solid 1px #dadada);
+  }
+}
+
+.user__list{
+  overflow-y: scroll;
+}
+
+.user-list__item{
+  padding: rem(6px 18px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  @include transition;
+
+  &:hover{
+    font-weight: 700;
+    color: #333333;
+  }
+  &:hover > .btn--delete{
+    display: block;
+  }
+}
+
+
+/*------------------------------
+MENU CONTACTOS
+-----------------------------*/
+
+.contact{
+  $random : random(9);
+
+  &__media{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    width: rem(68px);
+    height: rem(68px);
+    text-transform: uppercase;
+    font-size: rem(44px);
+    color: #fff;
+    background-color: #ccc;
+    background-color: map-get($colores-random, $random);
+    margin-right: rem(26px);
+  }
+
+  &__heading{
+    display: inline-block;
+    padding: rem(4px 0);
+    font-size: rem(33px);
+
+    &--detail{
+      display: block;
+      font-size: rem(14px);
+      color: #999999;
+    }
+
+  }
+
+  &__block{
+    &:first-of-type{
+      display: flex;
+      align-items: flex-start;
+      padding: rem(25px 48px);
+    }
+    padding: rem(15px 48px);
+    border-bottom: rem(solid 1px #dadada);
+    &:last-of-type{
+      border-bottom: 0;
+    }
+
+  }
+
+  &__detail{
+    display: block;
+    padding: rem(15px 35px);
+  }
+}
+
+
+/*------------------------------
+BARRA DESPLAZABLE-MENU
+-----------------------------*/
+
+
+.menu{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #fff;
+    padding: rem(28px 0);
+    width: rem(335px);
+    height: 100vh;
+    border-left: rem(solid 1px #dadada);
+    opacity: 0;
+    transform: translateX(110%);
+    transition: all 250ms linear;
+
+
+    &__heading{
+        margin-bottom: rem(15px);
+        padding: rem(0 15px);
+        font-weight: 700;
+    }
+
+    &__btns{
+      display: flex;
+      justify-content: space-between;
+      padding: rem(20px 15px)
+    }
+
+}
+
+/*--------------------------
+Transicion del menu
+-----------------------------*/
+.show{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.icon{
+
+  fill: #dadada;
+  transform: translateY(35px);
+}
