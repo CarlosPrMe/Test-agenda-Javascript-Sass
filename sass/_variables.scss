@@ -1,104 +1,12 @@
-/*------------------------------
-COLORES RANDOM
------------------------------*/
-
-$colores-random: (1: #d0021b, 
-                2: #02b4d0, 
-                3: #5502d0,
-                4:#024bd0,
-                5:#c702d0,
-                6:#02d0ab,
-                7:#47d002,
-                8:#c9d002,
-                9:#d09202);
-
-/*------------------------------
-TRANSICION
------------------------------*/
-
-@mixin transition ($style:all, $time:250ms, $type:linear){
-    transition: $style $time $type;
-
+:root {
+  --gunmetal: #5d6e6a;
+  --fontColor: #4a4a4a;
+  --fsBase: 16px;
+  --fsL:33px;
+  --success: #0bd4a4;
+  --danger: #d0021b;
+  --primary: #0cb7f5;
+  --softgrey:#dadada;
+  --white:#fff;
+  --black:#333;  
 }
-
-/*------------------------------
-BOTONES
------------------------------*/
-.btn{
-    display: inline-block;
-    outline: none;
-    padding: rem(10px 12px);
-    border: 0;
-    font-size: rem(16px);
-    font-family: 'Encode Sans', sans-serif;
-    border-radius: rem(4px);
-    background-color: #eeeeee; 
-    color: #4a4a4a;
-    cursor: pointer;
-    @include transition;
-
-    &:hover{
-        background-color: darken(#eeeeee, 5%);
-    }
-
-
-    &--primary{
-        padding: rem(10px 25px);
-        background-color: #0cb7f5;
-        color: #fff;
-        &:hover{
-            background-color: darken(#0cb7f5, 5%);
-        }
-
-    }
-    &--success{
-        padding: rem(10px 25px);
-        background-color: #0bd4a4;
-        color: #fff;
-    }
-
-    &--more{
-        position: absolute;
-        right: rem(30px);
-        bottom: rem(30px);
-        &:hover{
-            background-color: darken(#0bd4a4, 5%);
-        }
-    }
-
-    &--delete{
-        position: relative;
-        z-index: 50;
-        padding: 0;
-        width: rem(20px);
-        height: rem(20px);
-        border-radius: 100%;
-        display: none;
-        cursor: pointer;
-
-        &::before{
-            content: 'x';
-            position: absolute;
-            bottom:rem(2px);
-            left: rem(6px);
-            color:rgba(74, 74, 74, 0.45);;
-
-        }
-    }
-}
-
-#update_user,
-#add_user{
-    display: none;
-}
-
-//Clase para rotar el mas
-
-.rotate{
-    transform: rotate(45deg);
-}
-
-
-
-
-

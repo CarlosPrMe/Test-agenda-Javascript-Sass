@@ -241,193 +241,364 @@ const contacts = [
     }
 ]
 
+colorsList = [
+    '#d0021b',
+    '#02b4d0',
+    '#5502d0',
+    '#024bd0',
+    '#c702d0',
+    '#02d0ab',
+    '#47d002',
+    '#c9d002',
+    '#d09202'
+];
 
-//---------------------------------------
+let init = function init() {
 
-//funcion limpiar listado
+    let menu = document.getElementById('edition-menu');
+    let closeMenu = document.getElementById('close-menu');
+    let add = document.querySelector('#show');
+    let editBtn = document.getElementById('editBtn');
+    let btnUpdate = document.getElementById('update');
+    let list = document.getElementById('list');
+    let mainList = document.getElementsByClassName('main-list')[0];
+    let currentGroup = contacts;
+    let currentUser = {};
+    let userPlaceholder = {
+        name: 'nuevo',
+        surname: 'contacto',
+        group: 'grupo',
+        email: 'email@email.com',
+        phone: '+34 555 55 55',
+        country: 'españa'
+    }
 
-let user_list = document.getElementsByClassName('user-list')[0];
-function clear_list() {
-    user_list.innerHTML = ''
-}
+    let initialUser = document.getElementById('initial-user');
 
-//---------------------------------------
+    //----------------------
+    let radioAll = document.getElementById('all');
+    let radioFavourites = document.getElementById('favoritos');
+    let radioFamily = document.getElementById('familia');
+    let radioFriends = document.getElementById('amigos');
+    let radioWork = document.getElementById('trabajo');
 
-//FUNCION ORDENAR USUARIOS
+    //-------------------------
+    let initial = document.querySelector('#initial-user');
+    let name = document.querySelector('#name-user');
+    let group = document.querySelector('#group-user');
+    let email = document.querySelector('#email-user');
+    let phone = document.querySelector('#phone-user');
 
-function user_sort(array) {
-    return array.sort((a, b) => {
-        if (a.name > b.name) {
-            return 1;
-        }
-        if (a.name < b.name) {
-            return -1;
-        }
-        return 0;
+    //-------------------------
+    let btnAddUser = document.getElementById('add');
+    let nameForm = document.querySelector('#name');
+    let surnameForm = document.querySelector('#surname');
+    let emailForm = document.querySelector('#email');
+    let phoneForm = document.querySelector('#phone');
+    let countryForm = document.querySelector('#country');
+    let groupForm = document.querySelector('#group');
+
+
+    //-----Transiciones--------------
+
+    closeMenu.addEventListener('click', () => {
+        menu.classList.remove('show-menu');
+        editBtn.classList.remove('hide');
+        resetForm();
     })
-}
-
-//user_sort(contacts);
-
-//--------------------------------------------
-
-//FUNCION PINTAR USUARIOS EN LISTA
 
 
-function list_users(array) {
-    clear_list();
-    for (let i = 0; i < array.length; i++) {
-        let btn = document.createElement('button');
-        btn.setAttribute('class', 'btn btn--delete');
-        let li = document.createElement('li');
-        li.innerText = `${array[i].name} ${array[i].surname}`
-        li.setAttribute('class', 'user-list__item');
-        li.appendChild(btn);
-        user_list.appendChild(li);
-    }
-}
+    add.addEventListener('click', () => {
+        editBtn.classList.add('hide');
+        menu.classList.add('show-menu');
+        btnUpdate.classList.add('hide');
+        resetForm();
 
-//FUNCION PINTAR DETALLES
+    });
 
-function print_details(user, array) {
-    let heading = document.getElementsByClassName('contact__heading')[0];
-    let sub_heading = document.getElementsByClassName('contact__heading--detail')[0];
-    let tel = document.getElementsByClassName('contact__detail')[1];
-    let email = document.getElementsByClassName('contact__detail')[0];
-    let avatar = document.getElementsByClassName('contact__media')[0];
 
-    for (let i = 0; i < array.length; i++) {
+    editBtn.addEventListener('click', () => {
+        editBtn.classList.add('hide');
+        menu.classList.add('show-menu');
+        btnUpdate.classList.add('show');
+        btnAddUser.classList.add('hide');
+    })
 
-        if (`${array[i].name} ${array[i].surname}` === user) {
-            let inicial = user.substring(0, 1);
-            heading.textContent = user;
-            sub_heading.innerText = `${array[i].group}`;
-            tel.textContent = `${array[i].phone}`;
-            email.innerText = `${array[i].email}`;
-            avatar.textContent = inicial;
-            nombre.value = `${array[i].name}`;
-            surname.value = `${array[i].surname}`;
-            email.value = `${array[i].email}`;
-            telefono.value = `${array[i].phone}`;
-            pais.value = `${array[i].country}`;
-            grupo.value = `${array[i].group}`;
-            break;
+
+
+    //--------Añadir usuario------------
+
+    btnAddUser.addEventListener('click', () => {
+        let newUser = {}
+        newUser.name = nameForm.value;
+        newUser.surname = surnameForm.value;
+        newUser.email = emailForm.value;
+        newUser.phone = phoneForm.value;
+        newUser.country = countryForm.value;
+        newUser.group = groupForm.value;
+        currentUser = newUser;
+        contacts.push(newUser);
+        initialUser.style.backgroundColor = randomColor(colorsList);
+        paintContacs(filterByGroup(groupForm.value.toLowerCase(), contacts));
+        if (newUser.group === 'favoritos') {
+            radioFavourites.setAttribute('checked', true);
+        } else if (newUser.group === 'familia') {
+            radioFamily.setAttribute('checked', true)
+        } else if (newUser.group === 'trabajo') {
+            radioWork.setAttribute('checked', true)
+        } else if (newUser.group === 'amigos') {
+            radioFriends.setAttribute('checked', true)
+        }
+        paintData(newUser);
+        menu.classList.remove('show-menu');
+        editBtn.classList.remove('hide');
+    })
+
+
+    //----Editar usuario--------
+
+    editBtn.addEventListener('click', (e) => {
+        if (currentUser.name) {
+            console.log(currentUser);
+            initialUser.style.backgroundColor = randomColor(colorsList);
+            nameForm.value = currentUser.name;
+            surnameForm.value = currentUser.surname;
+            emailForm.value = currentUser.email;
+            phoneForm.value = currentUser.phone;
+            countryForm.value = currentUser.country;
+            groupForm.value = currentUser.group;
+        }
+    })
+
+    btnUpdate.addEventListener('click', () => {
+        let newUser = { ...currentUser };
+        newUser.name = nameForm.value;
+        newUser.surname = surnameForm.value;
+        newUser.email = emailForm.value
+        newUser.phone = phoneForm.value
+        newUser.country = countryForm.value
+        newUser.group = groupForm.value
+        deleteUser(currentUser, contacts);
+        if (newUser.group === 'favoritos') {
+            radioFavourites.setAttribute('checked', true);
+        } else if (newUser.group === 'familia') {
+            radioFamily.setAttribute('checked', true)
+        } else if (newUser.group === 'trabajo') {
+            radioWork.setAttribute('checked', true)
+        } else if (newUser.group === 'amigos') {
+            radioFriends.setAttribute('checked', true)
+        }
+        contacts.push(newUser);
+        paintContacs(filterByGroup(newUser.group.toLowerCase(), contacts));
+        currentUser = newUser
+        paintData(currentUser);
+        menu.classList.remove('show-menu');
+        editBtn.classList.remove('hide');
+    })
+
+    //---Selecionar un contacto y eliminar------
+
+    editBtn.classList.add('hide');
+    radioAll.setAttribute('checked', true);
+    list.addEventListener('click', (e) => {
+        editBtn.classList.remove('hide');
+        if (e.target.className !== "btn btn--delete") {
+            let userName = e.target.childNodes[0].data
+            currentUser = getUser(userName, currentGroup)
+            if (currentUser !== -1) {
+                initialUser.style.backgroundColor = randomColor(colorsList);
+                paintData(currentUser)
+            } else {
+                return alert('Usuario no encontrado');
+            }
+        } else if (e.target.className === "btn btn--delete") {
+            let userName = e.target.id;
+            currentUser = getUser(userName, currentGroup);
+            let confirm = window.confirm(`Seguro que quieres eliminar a ${currentUser.name} ${currentUser.surname}?`);
+            if (confirm) {
+                deleteUser(currentUser, contacts);
+                radioAll.checked = true;
+                paintContacs(contacts);
+                currentUser = {}
+                currentGroup = contacts;
+                initialUser.style.backgroundColor = randomColor(colorsList);
+                paintData(userPlaceholder);
+                editBtn.classList.add('hide');
+            }
+        }
+    });
+
+
+    //------Pintar los grupos-------
+
+    function paintContacs(array) {
+        clear_list();
+        array = sortList(array);
+        for (let i = 0; i < array.length; i++) {
+            let btn = document.createElement('button');
+            btn.setAttribute('type', 'button');
+            btn.setAttribute('id', `${array[i].name} ${array[i].surname}`);
+            btn.textContent = 'X';
+            btn.classList.add('btn', 'btn--delete');
+            let li = document.createElement('li');
+            li.classList.add('list__item');
+            li.textContent = `${array[i].name} ${array[i].surname}`;
+            li.appendChild(btn);
+            list.appendChild(li);
         }
     }
-}
+
+    //---Inicializacion-------
+
+    paintContacs(contacts);
+    paintData(userPlaceholder);
+    initialUser.style.backgroundColor = randomColor(colorsList);
+    //------------------------
+    mainList.addEventListener('click', (event) => {
+        if (event.target.localName === 'label') {
+            paintContacs(filterByGroup(event.target.innerText.toLowerCase(), contacts))
+        }
+
+    })
 
 
-/* nombre.value = `${array[i].surname}`;
-surname.value = `${array[i].surname}`;
-email.value = `${array[i].email}`;
-telefono.value = `${array[i].phone}`;
-pais.value = `${array[i].country}`;
-grupo.value = `${array[i].group}`; */
+    //------Buscador-------------
 
+    let search = document.querySelector('#search');
+    search.addEventListener('keyup', (e) => {
+        let searching = buscadorPredictivo(search.value);
+        let userFound = contacts.find(user => user.name === searching || user.name === searching.split(' ')[0] && user.surname === searching.split(' ')[1])
+        if (userFound) {
+            currentUser = userFound;
+            paintData(currentUser);
+            editBtn.classList.remove('hide');
+            search.value = '';
+            initialUser.style.backgroundColor = randomColor(colorsList);
+            paintContacs(filterByGroup(currentUser.group.toLowerCase(), contacts))
+            if (currentUser.group === 'familia') {
+                radioFamily.checked = true
+            } else if (currentUser.group === 'amigos') {
+                radioFriends.checked = true
+            } else if (currentUser.group === 'favoritos') {
+                radioFavourites.checked = true
+            } else if (currentUser.group === 'trabajo') {
+                radioWork.checked = true
+            }
+        }
+    })
 
-//--------------------------------------
+    //-----Funciones----------------
 
-//FILTRAR POR GRUPO
-
-function getGroup(grupo, array) {
-    let sort = [];
-    for (let i = 0; i < array.length; i++) {
-        if (array[i].group === grupo) {
-            sort.push(array[i]);
+    function filterByGroup(filtro, array) {
+        currentGroup = []
+        if (filtro !== 'todos los contactos') {
+            let filtrado = array.filter(contact => contact.group === filtro);
+            currentGroup = sortList(filtrado)
+            return sortList(filtrado);
+        } else if (filtro === 'todos los contactos' || filtro === "") {
+            currentGroup = sortList(array);
+            return sortList(array);
         }
     }
-    return sort;
+
+    function clear_list() {
+        list.innerHTML = '';
+    }
+
+    function getUser(user, array) {
+        if (array.length === 0) {
+            array = contacts;
+        }
+        let name = user.split(' ')[0];
+        let surname = user.split(' ')[1];
+        let userFound = array.find(u => u.name === name && u.surname === surname)
+        return userFound
+    }
+
+    function clearData() {
+        initial.textContent = '';
+        name.textContent = '';
+        group.textContent = '';
+        email.textContent = '';
+        phone.textContent = '';
+    }
+
+    function paintData(user) {
+        clearData();
+        initial.textContent = getInitial(user.name);
+        name.textContent = `${user.name} ${user.surname}`;
+        group.textContent = user.group;
+        email.textContent = user.email;
+        phone.textContent = user.phone;
+    }
+
+    function getInitial(name) {
+        return name.split('')[0];
+    }
+
+    function sortList(group) {
+        group.sort((a, b) => {
+            if (a.name > b.name) {
+                return 1
+            } else if (a.name < b.name) {
+                return -1
+            } else if (a.name === b.name) {
+                if (a.surname > b.surname) {
+                    return 1
+                } else if (a.surname < b.surname) {
+                    return -1
+                }
+            }
+        })
+        return group;
+    }
+
+    function deleteUser(user, array) {
+        let index = array.findIndex((elem) => elem.name === user.name && elem.surname === user.surname);
+        array.splice(index, 1)
+    }
+
+    function resetForm() {
+        nameForm.value = '';
+        surnameForm.value = '';
+        emailForm.value = '';
+        phoneForm.value = '';
+        countryForm.value = '';
+        groupForm.value = '';
+    }
+
+    function buscadorPredictivo(user) {
+        let joinName = '';
+        let joinSurname = '';
+        let complete = '';
+        if (user.length > 1) {
+            let name = user.substring(1);
+            let initial = user[0].toUpperCase();
+            joinName = initial + name;
+            complete = joinName;
+            if (joinName.indexOf(" ") > -1) {
+                let nameOk = joinName.split(' ')[0];
+                let surname = joinName.split(' ')[1];
+                if (surname.length > 1) {
+                    let surnameCut = surname.substring(1)
+                    let initialSurname = surname[0].toUpperCase();
+                    joinSurname = initialSurname + surnameCut;
+                    complete = nameOk + ' ' + joinSurname;
+                }
+            }
+        }
+        return complete
+    }
+
+    function randomColor(arrayColors) {
+        let num = randomNumber(0, arrayColors.length);
+        return arrayColors[num];
+    }
+
+    function randomNumber(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+    }
 }
 
 
-//--------------------------------------
-
-//SACAR ID DE LA LISTA
-
-let groups = document.getElementsByClassName('navbar')[0];
-groups.addEventListener('click', function (event) {
-
-    if (event.target.id === 'all') {
-        let orden = user_sort(contacts);
-        list_users(orden);
-    } else {
-        let agrupado = getGroup(event.target.id, contacts);
-        let ordenado = user_sort(agrupado);
-        list_users(ordenado);
-    }
-
-    //event.target.setAttribute('class', 'selected');
-    //event.target.classList.add('selected')
-
-})
-
-
-let lista = document.getElementsByClassName('user-list')[0];
-lista.addEventListener('click', (event) => {
-    let user = event.target.innerText;
-    print_details(user, contacts);
-})
-
-//RECOGER DATOS DEL FORMULARIO
-
-let nombre = document.getElementById('name');
-let apellidos = document.getElementById('surname');
-let email = document.getElementById('email');
-let pais = document.getElementById('phone-pre');
-let telefono = document.getElementById('phone-number');
-let grupo = document.getElementById('group');
-
-let add = document.getElementById('add_user');
-
-add.addEventListener('click', function () {
-
-    let new_user = {};
-    new_user.name = nombre.value;
-    new_user.surname = surname.value;
-    new_user.email = email.value;
-    new_user.phone = telefono.value;
-    new_user.country = pais.value;
-    new_user.group = grupo.value;
-    contacts.push(new_user);
-    nombre.value = '';
-    surname.value = '';
-    email.value = '';
-    telefono.value = '';
-    pais.value = '';
-    grupo.value = '';
-
-})
-
-
-//ABRIR VENTANA PARA AÑADIR MOSTRAR BOTON CORRESPONDIENTE
-
-$('.btn--more').click(function () {
-    $(this).css('display', 'none');
-    $('.menu').toggleClass('show');
-    $('#add_user').css('display', 'inline-block');
-
-})
-//ABRIR VENTANA PARA EDITAR
-
-$('#edit').click(function () {
-    $(this).css('display', 'none');
-    $('.menu').toggleClass('show');
-    $('#update_user').css('display', 'inline-block');
-})
-
-//OCULTAR VENTANA
-
-$('.btn--close').click(function () {
-    $('.btn--more').css('display', 'block');
-    $('#edit').css('display', 'block');
-    $('#update_user').css('display','none');
-    $('.menu').toggleClass('show');
-    $('#add_user').css('display', 'none');
-})
-
-
-$('.btn--delete').click(function () {
-    console.log('hola');
-    
-})
-
+window.onload = init;
