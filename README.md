@@ -5,7 +5,7 @@ Simulación de una agenda de contactos. Realizada con Javascript.
 
 ## Resumen
 
-Añadir, editar y eliminar contactos. Navegar por las diferentes categorías y busqueda.
+Añadir, editar, eliminar y buscar contactos. Navegar por las diferentes categorías.
  
 
 ## Detalle de las pantallas
