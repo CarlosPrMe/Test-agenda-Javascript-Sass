@@ -1,247 +1,6 @@
-const contacts = [
-    {
-        "name": "Piedad",
-        "surname": "Dunfee",
-        "email": "piedad.dunfee@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "favoritos"
-    },
-    {
-        "name": "Elsie",
-        "surname": "Calvery",
-        "email": "elsie.calvery@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "favoritos"
-    },
-    {
-        "name": "Rodger",
-        "surname": "Pye",
-        "email": "rodger.pye@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    },
-    {
-        "name": "Mohammad",
-        "surname": "Pye",
-        "email": "mohammad.pacheo@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "favoritos"
-    },
-    {
-        "name": "Emmie",
-        "surname": "Derryberry",
-        "email": "emmie.derryberry@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    },
-    {
-        "name": "Lino",
-        "surname": "Kottwitz",
-        "email": "lino.kottwitz@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "trabajo"
-    },
-    {
-        "name": "Brittney",
-        "surname": "Ruddock",
-        "email": "brittney.ruddock@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "familia"
-    },
-    {
-        "name": "Jaimie",
-        "surname": "Human",
-        "email": "jaimie.human@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    },
-    {
-        "name": "Darleen",
-        "surname": "Kesten",
-        "email": "darleen.kesten@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    },
-    {
-        "name": "Georgie",
-        "surname": "Hannold",
-        "email": "georgie.hannold@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "familia"
-    },
-    {
-        "name": "Doreatha",
-        "surname": "Wheeler",
-        "email": "doreatha.wheeler@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "favoritos"
-    },
-    {
-        "name": "Christie",
-        "surname": "Solum",
-        "email": "christie.solum@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "trabajo"
-    },
-    {
-        "name": "Carlita",
-        "surname": "Whitmire",
-        "email": "carlita.whitmire@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "familia"
-    },
-    {
-        "name": "Luciana",
-        "surname": "Jobe",
-        "email": "luciana.jobe@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "favoritos"
-    },
-    {
-        "name": "Sade",
-        "surname": "Selig",
-        "email": "sade.selig@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    },
-    {
-        "name": "Devon",
-        "surname": "Goodridge",
-        "email": "devon.goodridge@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    },
-    {
-        "name": "Bruna",
-        "surname": "Starkes",
-        "email": "bruna.starkes@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "trabajo"
-    },
-    {
-        "name": "Glynis",
-        "surname": "Hudnall",
-        "email": "glynis.hudnall@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "favoritos"
-    },
-    {
-        "name": "Anissa",
-        "surname": "Leggett",
-        "email": "anissa.leggett@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "familia"
-    },
-    {
-        "name": "Moshe",
-        "surname": "Moxley",
-        "email": "moshe.moxley@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    },
-    {
-        "name": "Shannon",
-        "surname": "Olivieri",
-        "email": "shannon.olivieri@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "favoritos"
-    },
-    {
-        "name": "Janel",
-        "surname": "Vandever",
-        "email": "janel.vandever@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "favoritos"
-    },
-    {
-        "name": "Tashia",
-        "surname": "Fontes",
-        "email": "tashia.fontes@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "trabajo"
-    },
-    {
-        "name": "Merrilee",
-        "surname": "Lynde",
-        "email": "merrilee.lynde@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "trabajo"
-    },
-    {
-        "name": "Coral",
-        "surname": "Eastin",
-        "email": "coral.eastin@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    },
-    {
-        "name": "Shandi",
-        "surname": "Hunsaker",
-        "email": "shandi.hunsaker@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    },
-    {
-        "name": "Wilburn",
-        "surname": "Meyer",
-        "email": "wilburn.meyer@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "trabajo"
-    },
-    {
-        "name": "Quintin",
-        "surname": "Schrom",
-        "email": "quintin.schrom@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "trabajo"
-    },
-    {
-        "name": "Claribel",
-        "surname": "Sipes",
-        "email": "claribel.sipes@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "trabajo"
-    },
-    {
-        "name": "Nevada",
-        "surname": "Chappelle",
-        "email": "nevada.chappelle@domain.com",
-        "country": "españa",
-        "phone": "607 123 456",
-        "group": "amigos"
-    }
-]
 
-colorsList = [
+let contacts = [];
+let colorsList = [
     '#d0021b',
     '#02b4d0',
     '#5502d0',
@@ -262,7 +21,7 @@ let init = function init() {
     let btnUpdate = document.getElementById('update');
     let list = document.getElementById('list');
     let mainList = document.getElementsByClassName('main-list')[0];
-    let currentGroup = contacts;
+    let currentGroup = [];
     let currentUser = {};
     let userPlaceholder = {
         name: 'nuevo',
@@ -298,6 +57,61 @@ let init = function init() {
     let countryForm = document.querySelector('#country');
     let groupForm = document.querySelector('#group');
 
+    //-------------TEST CON MOCKAPI---------------------
+
+    const url = 'https://5cff86eed691540014b0dd73.mockapi.io/users'
+
+    function getUsers(user) {
+        fetch(url).then(res => res.json().then(res => {
+            currentGroup = res;
+            contacts = currentGroup;
+            if (user) {
+                paintContacs(filterByGroup(user.group.toLowerCase(), res))
+            } else {
+                paintContacs(res);
+            }
+            return res
+        }));
+    }
+
+    function deleteById(id) {
+        fetch(`${url}/${id}`, { method: 'DELETE' }).then(res => res.json().then(() => {
+        })).then(() => {
+            getUsers()
+        }).then(() => {
+            currentGroup = contacts;
+            currentUser = {}
+            initialUser.style.backgroundColor = randomColor(colorsList);
+            paintData(userPlaceholder);
+            editBtn.classList.add('hide')
+            radioAll.checked = true;
+        })
+    }
+
+    function createUser(user) {
+        fetch(url, {
+            method: 'POST', body: JSON.stringify(user), headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json().then(res => {
+            console.log(res);
+        })).then(() => {
+            getUsers(user)
+        }).then(() => {
+            initialUser.style.backgroundColor = randomColor(colorsList);
+            selectRadio(user);
+        })
+    }
+
+    function updateUser(user) {
+        fetch(`${url}/${user.id}`, { method: 'PUT', body: JSON.stringify(user), headers: { 'Content-Type': 'application/json' } })
+            .then(res => res.json().then(() => {
+                getUsers(user)
+            }).then(() => {
+                initialUser.style.backgroundColor = randomColor(colorsList);
+                selectRadio(user)
+            }))
+    }
 
     //-----Transiciones--------------
 
@@ -337,18 +151,8 @@ let init = function init() {
         newUser.country = countryForm.value;
         newUser.group = groupForm.value;
         currentUser = newUser;
-        contacts.push(newUser);
-        initialUser.style.backgroundColor = randomColor(colorsList);
+        createUser(currentUser)
         paintContacs(filterByGroup(groupForm.value.toLowerCase(), contacts));
-        if (newUser.group === 'favoritos') {
-            radioFavourites.setAttribute('checked', true);
-        } else if (newUser.group === 'familia') {
-            radioFamily.setAttribute('checked', true)
-        } else if (newUser.group === 'trabajo') {
-            radioWork.setAttribute('checked', true)
-        } else if (newUser.group === 'amigos') {
-            radioFriends.setAttribute('checked', true)
-        }
         paintData(newUser);
         menu.classList.remove('show-menu');
         editBtn.classList.remove('hide');
@@ -378,18 +182,7 @@ let init = function init() {
         newUser.phone = phoneForm.value
         newUser.country = countryForm.value
         newUser.group = groupForm.value
-        deleteUser(currentUser, contacts);
-        if (newUser.group === 'favoritos') {
-            radioFavourites.setAttribute('checked', true);
-        } else if (newUser.group === 'familia') {
-            radioFamily.setAttribute('checked', true)
-        } else if (newUser.group === 'trabajo') {
-            radioWork.setAttribute('checked', true)
-        } else if (newUser.group === 'amigos') {
-            radioFriends.setAttribute('checked', true)
-        }
-        contacts.push(newUser);
-        paintContacs(filterByGroup(newUser.group.toLowerCase(), contacts));
+        updateUser(newUser)
         currentUser = newUser
         paintData(currentUser);
         menu.classList.remove('show-menu');
@@ -412,18 +205,11 @@ let init = function init() {
                 return alert('Usuario no encontrado');
             }
         } else if (e.target.className === "btn btn--delete") {
-            let userName = e.target.id;
-            currentUser = getUser(userName, currentGroup);
+            let userId = e.target.attributes.userid.value;
+            currentUser = getUser(userId, currentGroup);
             let confirm = window.confirm(`Seguro que quieres eliminar a ${currentUser.name} ${currentUser.surname}?`);
             if (confirm) {
-                deleteUser(currentUser, contacts);
-                radioAll.checked = true;
-                paintContacs(contacts);
-                currentUser = {}
-                currentGroup = contacts;
-                initialUser.style.backgroundColor = randomColor(colorsList);
-                paintData(userPlaceholder);
-                editBtn.classList.add('hide');
+                deleteById(userId)
             }
         }
     });
@@ -438,6 +224,7 @@ let init = function init() {
             let btn = document.createElement('button');
             btn.setAttribute('type', 'button');
             btn.setAttribute('id', `${array[i].name} ${array[i].surname}`);
+            btn.setAttribute('userId', `${array[i].id}`);
             btn.textContent = 'X';
             btn.classList.add('btn', 'btn--delete');
             let li = document.createElement('li');
@@ -449,10 +236,10 @@ let init = function init() {
     }
 
     //---Inicializacion-------
-
-    paintContacs(contacts);
+    getUsers();
     paintData(userPlaceholder);
     initialUser.style.backgroundColor = randomColor(colorsList);
+    
     //------------------------
     mainList.addEventListener('click', (event) => {
         if (event.target.localName === 'label') {
@@ -475,15 +262,7 @@ let init = function init() {
             search.value = '';
             initialUser.style.backgroundColor = randomColor(colorsList);
             paintContacs(filterByGroup(currentUser.group.toLowerCase(), contacts))
-            if (currentUser.group === 'familia') {
-                radioFamily.checked = true
-            } else if (currentUser.group === 'amigos') {
-                radioFriends.checked = true
-            } else if (currentUser.group === 'favoritos') {
-                radioFavourites.checked = true
-            } else if (currentUser.group === 'trabajo') {
-                radioWork.checked = true
-            }
+            selectRadio(userFound);
         }
     })
 
@@ -511,7 +290,7 @@ let init = function init() {
         }
         let name = user.split(' ')[0];
         let surname = user.split(' ')[1];
-        let userFound = array.find(u => u.name === name && u.surname === surname)
+        let userFound = array.find(u => u.id === user || u.name === name && u.surname === surname)
         return userFound
     }
 
@@ -553,11 +332,6 @@ let init = function init() {
         return group;
     }
 
-    function deleteUser(user, array) {
-        let index = array.findIndex((elem) => elem.name === user.name && elem.surname === user.surname);
-        array.splice(index, 1)
-    }
-
     function resetForm() {
         nameForm.value = '';
         surnameForm.value = '';
@@ -565,6 +339,18 @@ let init = function init() {
         phoneForm.value = '';
         countryForm.value = '';
         groupForm.value = '';
+    }
+
+    function selectRadio(user) {
+        if (user.group === 'favoritos') {
+            radioFavourites.setAttribute('checked', true);
+        } else if (user.group === 'familia') {
+            radioFamily.setAttribute('checked', true)
+        } else if (user.group === 'trabajo') {
+            radioWork.setAttribute('checked', true)
+        } else if (user.group === 'amigos') {
+            radioFriends.setAttribute('checked', true)
+        }
     }
 
     function buscadorPredictivo(user) {
